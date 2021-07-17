@@ -59,7 +59,8 @@ function(ament_generate_package_environment)
           set(all_hooks "${all_hooks}source;${hook}\n")
           set(native_hook "/${hook}")
           file(TO_NATIVE_PATH "${native_hook}" native_hook)
-          if(WIN32)
+          # TODO(gavanderhoorn): fix this properly
+          if(NOT UNIX)
             set(ENVIRONMENT_HOOKS
                 "${ENVIRONMENT_HOOKS}call:ament_append_value AMENT_ENVIRONMENT_HOOKS[${PROJECT_NAME}] \"%AMENT_CURRENT_PREFIX%${native_hook}\"\n")
           else()
